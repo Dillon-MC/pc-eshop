@@ -5,7 +5,7 @@
     "description": "PC-EShop is an Ecommerce web app for Deskops/Laptops, and PC accessories. Buy Desktop PCs, Laptops, and loads of accessories, all in one place.",
     "start_url": "./",
     "scope": ".",
-    "background_color": "#1c1c1c",
+    "background_color": "#1765e3",
     "theme_color": "#1765e3",
     "dir": "ltr",
     "display": "fullscreen",
