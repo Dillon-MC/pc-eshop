@@ -1,20 +1,27 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import CustomCarousel from '../components/Carousel/CustomCarousel';
+import { gql } from '@apollo/client';
+import client from '../apollo-client';
 
 interface ICarouselProps {
   items: Array<
       {
-          name: String,
-          description: String,
-          link: String,
-          imageURL: String,
+          name: string,
+          description: string,
+          link: string,
+          imageURL: string,
       }
   >
 }
 
+interface IHomeProps {
+  promotedProducts: any
+}
 
-export default function Home(): JSX.Element {
+
+export default function Home({ promotedProducts }: IHomeProps): JSX.Element {
+  console.log(promotedProducts);
   const fakeCarouselItems: ICarouselProps = { 
     items: [
       { name: "test", description: "test desc", link: "test link", imageURL: "test img" },
@@ -55,4 +62,20 @@ export default function Home(): JSX.Element {
       </footer>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const { data } = await client.query({
+    query: gql`
+      query getPromotedProducts {
+          name
+      }
+    `,
+  });
+
+  return {
+    props: {
+      promotedProducts: data,
+    },
+  }
 }

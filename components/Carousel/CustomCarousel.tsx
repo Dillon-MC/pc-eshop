@@ -6,21 +6,20 @@ import ErrorFallback from "../CustomErrorBoundary/ErrorFallback";
 interface ICarouselProps {
     items: Array<
         {
-            name: String,
-            description: String,
-            link: String,
-            imageURL: String,
+            name: string,
+            description: string,
+            link: string,
+            imageURL: string,
         }
     >
 }
-const errorTest = () => {
-    throw new Error("AHHH");
-}
+
 const CustomCarousel = ({ props }: { props: ICarouselProps }): JSX.Element => {
     return (
-        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {window.location.reload()}}>
-            <div className="carousel_container" onClick={errorTest}>
+        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { window.location.reload() }}>
+            <div className="carousel_container">
                 <Carousel className="carousel"
+                    activeIndicatorIconButtonProps={{ style: { color: '#0071ff' }, className: '' }}
                     interval={5000}
                     animation="slide"
                     navButtonsAlwaysVisible={true}
@@ -28,10 +27,12 @@ const CustomCarousel = ({ props }: { props: ICarouselProps }): JSX.Element => {
                     prev={((prev: any) => console.log(prev))}
                 >
                     {props.items.map(item =>
-                        <Paper className="mui_paper" elevation={3}>
-                            <h2>{item.name}</h2>
-                            <p>{item.description}</p>
-                        </Paper>
+                        <a href={item.link}>
+                            <Paper className="mui_paper" elevation={3}>
+                                <h2>{item.name}</h2>
+                                <p>{item.description}</p>
+                            </Paper>
+                        </a>
                     )}
                 </Carousel>
             </div>

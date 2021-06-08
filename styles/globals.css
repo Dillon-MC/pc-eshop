@@ -13,13 +13,13 @@ body {
   background-color: transparent;
   border-radius: 10px;
   width: 80%;
-  max-width: 300px;
-  height: 250px;
+  max-width: 600px;
+  height: 450px;
   text-align: center;
 }
 
 .carousel {
-  height: 250px;
+  max-height: 450px;
 }
 
 .carousel_image {
@@ -29,4 +29,14 @@ body {
 
 .mui_paper {
   min-height: 200px;
+}
+
+/* ERROR BOUNDARY STYLES */
+.error_msg {
+  background-color: white;
+  text-align: center;
+}
+
+.error_msg > p{
+  color: red;
 }
