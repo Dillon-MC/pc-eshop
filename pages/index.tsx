@@ -1,9 +1,8 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import CustomCarousel from '../components/Carousel/CustomCarousel';
+//import CustomCarousel from '../components/Carousel/CustomCarousel';
 import { gql, useQuery } from '@apollo/client';
 import { initializeApollo, addApolloState } from '../apollo-client';
-import { typeFromAST } from 'graphql';
 
 const GET_PROMOTED_PRODUCTS = gql`
 query getPromotedProducts {

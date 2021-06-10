@@ -1,8 +1,7 @@
-import { mergeDeep, relayStylePagination } from '@apollo/client/utilities';
-import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import { mergeDeep } from '@apollo/client/utilities';
+import { ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
 import { isEqual } from '@graphql-tools/utils';
 import { useMemo } from 'react';
-import { argsToArgsConfig } from 'graphql/type/definition';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
