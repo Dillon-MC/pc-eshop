@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-//import CustomCarousel from '../components/Carousel/CustomCarousel';
+import CustomCarousel from '../components/Carousel/CustomCarousel';
 import { gql, useQuery } from '@apollo/client';
 import { initializeApollo, addApolloState } from '../apollo-client';
 
@@ -13,14 +13,6 @@ query getPromotedProducts {
 `;
 
 export default function Home(): JSX.Element {
-  let bob;
-  if(typeof(window) !== 'undefined') {
-    console.log(true);
-    bob = useQuery(GET_PROMOTED_PRODUCTS, {});
-  } else
-    console.log(false);
-
-  console.log(bob?.data)
   return (
     <div className={styles.container}>
       <Head>
@@ -48,7 +40,7 @@ export default function Home(): JSX.Element {
 
       <main className={styles.main}>
         Hello, World!
-        {/* <CustomCarousel props={useQuery(GET_PROMOTED_PRODUCTS, {})} /> */}
+        <CustomCarousel props={useQuery(GET_PROMOTED_PRODUCTS, {})} />
       </main>
 
       <footer className={styles.footer}>
