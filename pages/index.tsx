@@ -1,32 +1,27 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import CustomCarousel from '../components/Carousel/CustomCarousel';
-import { gql } from '@apollo/client';
-import client from '../apollo-client';
+import { gql, useQuery } from '@apollo/client';
+import { initializeApollo, addApolloState } from '../apollo-client';
+import { typeFromAST } from 'graphql';
 
-interface ICarouselProps {
-  items: Array<
-      {
-          name: string,
-          description: string,
-          link: string,
-          imageURL: string,
-      }
-  >
+const GET_PROMOTED_PRODUCTS = gql`
+query getPromotedProducts {
+  getPromotedProducts {
+    name
+  }
 }
+`;
 
-interface IHomeProps {
-  promotedProducts: any
-}
+export default function Home(): JSX.Element {
+  let bob;
+  if(typeof(window) !== 'undefined') {
+    console.log(true);
+    bob = useQuery(GET_PROMOTED_PRODUCTS, {});
+  } else
+    console.log(false);
 
-
-export default function Home({ promotedProducts }: IHomeProps): JSX.Element {
-  console.log(promotedProducts);
-  const fakeCarouselItems: ICarouselProps = { 
-    items: [
-      { name: "test", description: "test desc", link: "test link", imageURL: "test img" },
-      { name: "test2", description: "test desc2", link: "test link2", imageURL: "test img2" }
-  ]};
+  console.log(bob?.data)
   return (
     <div className={styles.container}>
       <Head>
@@ -54,7 +49,7 @@ export default function Home({ promotedProducts }: IHomeProps): JSX.Element {
 
       <main className={styles.main}>
         Hello, World!
-        <CustomCarousel props={fakeCarouselItems} />
+        {/* <CustomCarousel props={useQuery(GET_PROMOTED_PRODUCTS, {})} /> */}
       </main>
 
       <footer className={styles.footer}>
@@ -65,17 +60,13 @@ export default function Home({ promotedProducts }: IHomeProps): JSX.Element {
 }
 
 export async function getServerSideProps() {
-  const { data } = await client.query({
-    query: gql`
-      query getPromotedProducts {
-          name
-      }
-    `,
+  const apolloClient = initializeApollo();
+
+  await apolloClient.readQuery({
+    query: GET_PROMOTED_PRODUCTS,
   });
 
-  return {
-    props: {
-      promotedProducts: data,
-    },
-  }
+  return addApolloState(apolloClient, {
+    props: {},
+  });
 }
