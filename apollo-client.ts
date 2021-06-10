@@ -1,6 +1,5 @@
 import { mergeDeep } from '@apollo/client/utilities';
 import { ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
-import { isEqual } from '@graphql-tools/utils';
 import { useMemo } from 'react';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
