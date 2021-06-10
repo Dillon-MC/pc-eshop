@@ -21,7 +21,7 @@ interface ICarouselProps {
 
 const CustomCarousel = ({ props }: { props: ICarouselProps }): JSX.Element => {
     console.log('props', props)
-    const { loading, data, error }: ICarouselProps = props;
+    const { loading, data }: ICarouselProps = props;
     return (
         <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { window.location.reload() }}>
             <div className="carousel_container">
