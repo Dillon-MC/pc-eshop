@@ -1,17 +1,19 @@
 import Carousel from 'react-material-ui-carousel';
 import { Paper } from '@material-ui/core';
 import { ErrorBoundary } from 'react-error-boundary';
-import ErrorFallback from "../CustomErrorBoundary/ErrorFallback";
+import ErrorFallback from '../CustomErrorBoundary/ErrorFallback';
 import { ApolloError } from '@apollo/client/errors';
-import { Skeleton } from "@material-ui/lab";
+import Image from 'next/image';
+import Skeleton from '@material-ui/lab/Skeleton';
+
 interface ICarouselProps {
     data: {
         getPromotedProducts: Array<
             {
                 name: string,
-                // description: string,
-                // link: string,
-                // imageURL: string,
+                description: string,
+                pageLink: string,
+                imageURL: string,
             }
         >
     } | undefined,
@@ -20,28 +22,36 @@ interface ICarouselProps {
 }
 
 const CustomCarousel = ({ props }: { props: ICarouselProps }): JSX.Element => {
-    console.log('props', props)
     const { loading, data }: ICarouselProps = props;
+
     return (
         <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { window.location.reload() }}>
             <div className="carousel_container">
-                <Carousel className="carousel"
+                <Carousel
                     activeIndicatorIconButtonProps={{ style: { color: '#0071ff' }, className: '' }}
                     interval={5000}
                     animation="slide"
                     navButtonsAlwaysVisible={true}
-                    next={(active: any) => console.log(active)}
-                    prev={((prev: any) => console.log(prev))}
                 >
                     {
-                        loading ? <Skeleton variant="rect" width={210} height={118} />
-                        : data?.getPromotedProducts.map((item, index) =>
-                            <a href="" key={item.name+index}>
-                                <Paper className="mui_paper" elevation={3}>
-                                    <h2>{item.name}</h2>
-                                </Paper>
-                            </a>
-                        )
+                        loading ?
+                            <Skeleton
+                                height={250}
+                                variant="rect"
+                                animation="wave"
+                                style={{ backgroundColor: '#585959', width: '100%' }}
+                            />
+                            : data?.getPromotedProducts.map((item, index) =>
+                                <a href="" key={item.name + index} className="no_underline">
+                                    <Paper className="mui_paper" elevation={3}>
+                                        <legend className="no_margin legend_2">{item.name}</legend>
+                                        <span className="product_image">
+                                            <Image src={item.imageURL} alt="productImage" width={220} height={150} />
+                                        </span>
+                                        <p className="no_margin">{item.description}</p>
+                                    </Paper>
+                                </a>
+                            )
                     }
                 </Carousel>
             </div>

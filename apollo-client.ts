@@ -10,20 +10,7 @@ const createApolloClient = (): ApolloClient<NormalizedCacheObject | undefined> =
     return new ApolloClient({
         ssrMode: typeof window === 'undefined',
         uri: "http://localhost:4000/graphql",
-        cache: new InMemoryCache({
-            typePolicies: {
-                Query: {
-                    fields: {
-                        name(_, { args, toReference }: {args: any, toReference: any}) {
-                            return toReference({
-                                __typename: "Product",
-                                name: args.name
-                            });
-                        },
-                    }
-                }
-            }
-        }),
+        cache: new InMemoryCache(),
     });
 }
 

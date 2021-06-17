@@ -1,20 +1,15 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import CustomCarousel from '../components/Carousel/CustomCarousel';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { initializeApollo, addApolloState } from '../apollo-client';
-
-const GET_PROMOTED_PRODUCTS = gql`
-query getPromotedProducts {
-  getPromotedProducts {
-    name
-  }
-}
-`;
+import CustomCarousel from '../components/Carousel/CustomCarousel';
+import TileGrid from '../components/TileGrid/TileGrid';
+import Header from '../components/Header/Header';
+import { GET_PROMOTED_PRODUCTS } from '../graphql/queries';
 
 export default function Home(): JSX.Element {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>PC-EShop</title>
         <meta name="description" content="Buy Desktop PCs, Laptops, and loads of accessories, all in one place." />
@@ -38,11 +33,36 @@ export default function Home(): JSX.Element {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        Hello, World!
-        <CustomCarousel props={useQuery(GET_PROMOTED_PRODUCTS, {})} />
-      </main>
+      <Header />
 
+      <div id={styles.home}>
+        <CustomCarousel props={useQuery(GET_PROMOTED_PRODUCTS, {})} />
+
+        <div>
+          <legend className="legend_1">Choose a Category</legend>
+          <hr />
+          <TileGrid tileData={
+            [
+              {
+                title: "Laptops",
+                link: "link",
+                image: "https://crinix.com.ng/wp-content/uploads/2020/11/9yq59ea.jpg",
+                imageWidth: 140,
+                gridsize: 6,
+              },
+              { title: "Desktops", link: "link", gridsize: 6 },
+              {
+                title: "Accessories",
+                link: "link",
+                image: "https://images-na.ssl-images-amazon.com/images/I/61mR4-4nu9L._AC_SY450_.jpg",
+                imageWidth: 300,
+                gridsize: 12
+              }
+            ]
+          } />
+        </div>
+      </div>
+      
       <footer className={styles.footer}>
         Hello, Footer!
       </footer>
