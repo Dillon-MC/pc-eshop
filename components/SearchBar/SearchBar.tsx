@@ -1,6 +1,5 @@
 import Search from '@material-ui/icons/Search';
 import Fab from '@material-ui/core/Fab';
-import Close from '@material-ui/icons/Close';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';

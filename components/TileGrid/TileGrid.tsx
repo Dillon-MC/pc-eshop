@@ -1,5 +1,5 @@
 import Tile, { ITileProps } from './Tile';
-import Grid, { GridSpacing } from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
 import { GridSize } from '@material-ui/core';
 
 interface ITileGridProps {
