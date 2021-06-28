@@ -6,7 +6,6 @@ import CustomButtonGroup from '../ButtonGroup/CustomButtonGroup';
 import CustomRating from '../Rating/CustomRating';
 import PriceFilter from './PriceFilter';
 import CategoryFilter from './CategoryFilter';
-import { useEffect } from 'react';
 
 const theme = createMuiTheme({
     palette: {
