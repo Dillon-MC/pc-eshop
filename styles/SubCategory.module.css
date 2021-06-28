@@ -1,0 +1,18 @@
+#subcategory_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+}
+
+.subcategory_container {
+    margin-bottom: 40vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+    grid-column-gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+}

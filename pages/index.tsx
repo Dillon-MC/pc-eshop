@@ -63,7 +63,7 @@ export default function Home(): JSX.Element {
         </div>
       </div>
       
-      <footer className={styles.footer}>
+      <footer>
         Hello, Footer!
       </footer>
     </div>

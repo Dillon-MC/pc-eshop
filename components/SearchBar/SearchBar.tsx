@@ -61,7 +61,7 @@ const SearchBar = (): JSX.Element => {
                 suggestions.map((suggestion, i) => (
                     <span className="searchsuggestion" key={suggestion.name + i}>
                         <p>
-                            {suggestion.name}
+                            {suggestion.name.toString()}
                         </p>
                     </span>
                 ))
@@ -90,7 +90,7 @@ const SearchBar = (): JSX.Element => {
                     ? <div className="clearsearch_button" onClick={clearSearch}>&times;</div>
                     : <div></div>
                 }
-                <input type="text" onChange={(e) => setSearch(e.target.value)} value={searchInput} />
+                <input type="text" onChange={(e) => setSearch(e.target.value.toString())} value={searchInput} />
                 <Fab color="primary" className="search_button" size="small" aria-label="search">
                     <Search />
                 </Fab>
